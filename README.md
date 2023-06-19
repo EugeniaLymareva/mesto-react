@@ -16,6 +16,9 @@ The file structure is implemented according to the Nested BEM methodology.
 *JS
 *React
 
+## Project on Git hub 
+https://github.com/EugeniaLymareva/mesto-react
+
 
 # Getting Started with Create React App
 
