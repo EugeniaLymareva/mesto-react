@@ -63,7 +63,8 @@ class Api {
       })
       return this._checkResponse(response)
     }
-  
+
+      
     async updateAvatar(userData) {
       const response = await fetch(`${this._baseUrl}/users/me/avatar`, {
         headers: this._headers,
