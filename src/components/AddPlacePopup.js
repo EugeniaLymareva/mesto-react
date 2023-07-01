@@ -26,7 +26,6 @@ function AddPlacePopup(props) {
           name="add" 
           title="Новое место" 
           type="submit" 
-          value="Создать" 
           isOpen={props.isOpen} 
           onClose={props.onClose}
           onSubmit={handleSubmit}
