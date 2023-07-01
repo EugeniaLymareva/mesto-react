@@ -20,6 +20,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({})
   const [cards, setCards] = React.useState([])
   const [currentUser, setCurrentUser] = React.useState({})
+  const [isLoading, setIsLoading] = React.useState(false)
 
 
   React.useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
 }, [])
 
 function handleUpdateAvatar(userData) {
+  setIsLoading(true)
   api.updateAvatar(userData)
     .then(response => {
       setCurrentUser(response)
@@ -54,10 +56,14 @@ function handleUpdateAvatar(userData) {
     })
     .catch((err) => {
       console.log(err)
-    })       
+    }) 
+    .finally(() => {
+      setIsLoading(false)
+    })      
 }
 
 function handleUpdateUser(userData) {
+  setIsLoading(true)
   api.updateUserInfo(userData)
     .then(response => {
       setCurrentUser(response)
@@ -65,10 +71,14 @@ function handleUpdateUser(userData) {
     })
     .catch((err) => {
       console.log(err)
-    })      
+    })  
+    .finally(() => {
+      setIsLoading(false)
+    })     
 }
 
 function handleAddPlaceSubmit(cardData) {
+  setIsLoading(true)
   api.addNewCard(cardData)
     .then(newCard => {
       setCards([newCard, ...cards])
@@ -77,6 +87,9 @@ function handleAddPlaceSubmit(cardData) {
     .catch((err) => {
       console.log(err)
     })
+    .finally(() => {
+      setIsLoading(false)
+    }) 
 }
 
 function handleCardDelete(_id) {
@@ -149,9 +162,9 @@ function handleCardLike(card) {
         />
         <Footer />
 
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} /> 
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={isLoading} /> 
 
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} /> 
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isLoading={isLoading} /> 
 
        
         <PopupWithForm 
@@ -164,7 +177,7 @@ function handleCardLike(card) {
         >
         </PopupWithForm>
 
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isLoading={isLoading} />
 
         <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} ></ImagePopup>
       </div>   

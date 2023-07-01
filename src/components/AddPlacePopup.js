@@ -19,7 +19,7 @@ function AddPlacePopup(props) {
             inputNameRef.current.value = ''
             inputLinkRef.current.value = ''
         }
-    })
+    }, [props.isOpen])
 
     return(
         <PopupWithForm 
@@ -30,6 +30,7 @@ function AddPlacePopup(props) {
           isOpen={props.isOpen} 
           onClose={props.onClose}
           onSubmit={handleSubmit}
+          textButton={props.isLoading ? 'Сохранение...' : 'Создать'}
         >
           <fieldset className="popup__input-container">
             <input ref={inputNameRef} type="text" name="name" className="popup__item" id="name-picture-input" placeholder="Название" required minLength="2" maxLength="30" />

@@ -10,7 +10,7 @@ function PopupWithForm(props) {
             
                 {props.children}
             
-            <input type={props.type} value={props.value} className="popup__submit-button" />
+            <button type={props.type} value={props.value} className="popup__submit-button">{props.textButton}</button>
         </form>
         </div>
     </div>

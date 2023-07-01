@@ -41,6 +41,7 @@ function EditProfilePopup(props) {
           isOpen={props.isOpen} 
           onClose={props.onClose} 
           onSubmit={handleSubmit}
+          textButton={props.isLoading ? 'Сохранение...' : 'Сохранить'}
         >
           <fieldset className="popup__input-container">
             <input type="text" name="name" className="popup__item" id="name-input" placeholder="Имя" value={name} onChange={handlNameChange} required minLength="2" maxLength="40" />
